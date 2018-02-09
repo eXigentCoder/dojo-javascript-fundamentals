@@ -24,11 +24,17 @@
 <body>
 <div class="reveal">
     <div class="slides">
+
+        <!--------------------------------------------------------------------->
+        <!--------------------------------------------------------------------->
+        <!--------------------------------------------------------------------->
+        <!--------------------------------------------------------------------->
         <section>
             <img src="/images/js.png">
             <h1>JavaScript</h1>
             <aside class="notes">
-                Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+                Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open
+                the speaker notes window (hit 's' on your keyboard).
             </aside>
         </section>
         <section data-background-image="/images/JavaScript-code-background.jpg">
@@ -117,13 +123,127 @@
         </section>
         <section>
             <h3>Running in Chrome </h3>
-            <small>Hit F12</small><br>
+            <small>Hit F12</small>
+            <br>
             <img style="height: 400px;" src="images/beer-o-clock.png"/>
         </section>
         <section>
             <h3>Running from the REPL</h3>
             <img src="images/repl.png"><br>
             <small>Make sure you have Node.JS installed</small>
+        </section>
+        <section>
+            <h3>The language itself</h3>
+            <img src="images/get-on-with-it.gif">
+        </section>
+        <section>
+            <h3>You don't know JS & Mozilla Developer Network</h3>
+            The following slides are from the <a
+            href="https://github.com/getify/You-Dont-Know-JS/blob/master/up%20%26%20going/ch1.md">You Don't Know JS</a>
+            book and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Mozilla Developer Network</a>.
+            Both are great resources to check out
+        </section>
+        <section>
+            <h3>Statements</h3>
+            In a computer language, a group of words, numbers, and operators that performs a specific task is a
+            statement. In JavaScript, a statement might look as follows:
+            <pre><code data-trim data-noescape>
+                var a = 1 + 2;
+            </code></pre>
+            <ul>
+                <li><strong>var a</strong> tells the engine to create a variable a</li>
+                <li><strong>=</strong> and <strong>+</strong> are operators (assignment and additon)</li>
+                <li>1 is a value or literal value</li>
+                <li><strong>;</strong> is the statement terminator. Depending on your context it may be unnecessary</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Expressions</h3>
+            Statements are made up of one or more expressions. An expression is any reference to a variable or value, or
+            a set of variable(s) and value(s) combined with operators.
+            <pre><code data-trim data-noescape>
+                var a = b * 2;
+            </code></pre>
+            <ul>
+                <li><strong>2</strong> is a literal value expression</li>
+                <li><strong>b</strong> is a variable expression, which means to retrieve its current value</li>
+                <li><strong>b * 2</strong> is an arithmetic expression, which means to do the multiplication</li>
+                <li><strong>a = b * 2</strong> is an assignment expression, which means to assign the result of the b *
+                    2 expression to the variable a
+                </li>
+            </ul>
+        </section>
+        <section>
+            <section>
+                <h3>(Smooth) Operators</h3>
+                Operators are how we perform actions on variables and values.<br>
+                <img src="images/smooth-operator.jpeg">
+            </section>
+            <section>
+                <h4>Assignment</h4>
+                <img src="images/assignment-operators.png">
+            </section>
+            <section>
+                <h4>Comparison</h4>
+                <img src="images/comparison-operators.png">
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Variables</h3>
+                <img src="images/variables.jpg">
+            </section>
+            <section>
+                <h3>var & let</h3>
+                <pre><code data-trim data-noescape>
+                    // Old school, don't use var anymore
+                    var a;
+                    a = 'Hello World';
+                    var b = 'I have block scope'
+                    // ES6 version
+                    let d = 'I have function scope'
+                </code></pre>
+            </section>
+            <section>
+                <h3>What is scope anyway?</h3>
+                <img style="height: 400px;" src="images/scope.jpg">
+            </section>
+            <section>
+                <h3>No I'm talking about variable scope!</h3>
+                <pre><code data-trim data-noescape>
+                    function iHaveScope() {
+                      var secret = 42;
+                    }
+                    secret; // ReferenceError: secret is not defined (in this scope)
+                </code></pre>
+                <pre><code data-trim data-noescape>
+                    for (var i=0; i<10; i++) {
+                      // block scope for the for statement
+                    }
+                    console.log(i) // => 10 (why oh why)
+                </code></pre>
+            </section>
+            <section>
+                <pre><code data-trim data-noescape>
+                    for (let i=0; i<10; i++) {
+                      // block scope for the for statement
+                    }
+                    console.log(i) // ReferenceError: i is not defined (Yay!)
+                </code></pre>
+            </section>
+            <section>
+                <h3>Const is all about memory references!</h3>
+                <pre><code data-trim data-noescape>
+                    const c = 'this cannot ever change'
+                    c = 'What about meow?' // will cause a runtime error TypeError: Assignment to constant variable.
+
+                    const dessert = { type: 'pie' };
+                    dessert.type = 'pudding'; // no problemo!
+                    console.log(dessert.type) // pudding
+                    dessert = { type: 'cake' }; // TypeError: Bad human!
+                </code></pre>
+                <a href="https://edgecoders.com/function-scopes-and-block-scopes-in-javascript-25bbd7f293d7">Source</a>
+            </section>
         </section>
     </div>
 </div>
