@@ -1,0 +1,47 @@
+{
+  "name": "dojo-javascript-fundamentals",
+  "version": "0.0.1",
+  "description": "Dojo to teach JavaScript Fundamentals",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "coverage": "npm test -- --coverage",
+    "prettier": "prettier --write --tab-width=4 --single-quote=true --print-width=100 --no-semi \"{src,test}/**/*.js\"",
+    "lint": "npm run lint-ci -- --fix",
+    "lint-ci": "eslint \"src/**/*.js\" \"test/**/*.js\" \"config/**/*.js\"",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eXigentCoder/dojo-javascript-fundamentals.git"
+  },
+  "keywords": [
+    "Node",
+    "JavaScript",
+    "Training"
+  ],
+  "author": "Ryan Kotzen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eXigentCoder/dojo-javascript-fundamentals/issues"
+  },
+  "homepage": "https://github.com/eXigentCoder/dojo-javascript-fundamentals#readme",
+  "jest": {
+    "testRegex": "/test/.*",
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "4.17.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-node": "6.0.0",
+    "eslint-plugin-prettier": "2.6.0",
+    "jest-cli": "22.2.1",
+    "prettier": "1.10.2"
+  }
+}
