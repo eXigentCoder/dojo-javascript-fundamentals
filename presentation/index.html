@@ -25,6 +25,7 @@
 <body>
 <div class="reveal">
     <div class="slides">
+
         <!--Intro------------------------------------------------------------------->
         <section>
             <img src="/images/js.png">
@@ -552,47 +553,195 @@
                 <img src="images/Wtf-Did-I-Just-Read-Wtf-Meme-Image.jpg">
             </section>
         </section><!--Data Types-->
+        <section>
+            <section>
+                <h3>String</h3>
+                <img src="images/string.jpg"><br>
+                <p>All things text!</p>
+            </section>
+            <section>
+                <h3>Escape</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = "I'm not keen of string escapes";
+                    a = '"Neither am I" said bob';
+                    a = "\"you can't use them!\"";
+                    a = "Need to escape backaspace man\\";
+                    a = "You can also add newlines \n";
+                    a = 'Hello \
+                    world'
+                    console.log(a) //Hello World
+                </code></pre>
+            </section>
+            <section>
+                <h3>Constructors are bad mkay</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    //Don't use the constructor
+                    let a = new String();
+                    b = ''
+                    typeof a === typeof b //false
+                    //Except to cast
+                    String(13)[1] // '3'
+                    // can also use .toString()
+                    (13).toString()[1] // '3'
+                </code></pre>
+            </section>
+            <section>
+                <h3>String operators</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = 'Hello';
+                    a = a + ' ';
+                    a += 'World!'
+                    console.log(a); // Hello World!
+                </code></pre>
+            </section>
+            <section>
+                <img src="images/string-properties.png"><br>
+            </section>
+            <section>
+                <img src="images/string-functions-1.png"><br>
+            </section>
+            <section>
+                <img src="images/string-functions-2.png"><br>
+            </section>
+        </section><!--String-->
+        <section>
+            <section>
+                <h3>Number</h3>
+                <img src="images/numbers.png"/><br>
+                <p>JS uses a 64-bit Floating Point for all numbers.</p>
+            </section>
+            <section>
+                <p>This has lead to some inaccuracies</p>
+                <img src="images/inacuracy.jpg">
+                <p>Integers - accurate up to 15 digits</p>
+                <p>The maximum number of decimals is 17</p>
+                <p>Inacurate arithmetic with decimals, mutiply & divide!</p>
+            </section>
+            <section>
+                <h3>NaN- Not a Number</h3>
+                <img src="images/NaN.jpg">
+                <p>Global method, isNaN()</p>
+            </section>
+            <section>
+                <img src="images/infinity.gif">
+                <pre><code class="JavaScript" data-trim data-noescape>
+                console.log(Infinity + 1) //Infinity
+                console.log(Infinity - 1) //Infinity
+                console.log(Infinity + 1 > Infinity - 1) //false
+                console.log(Infinity + Infinity) //Infinity
+                console.log(Infinity * Infinity) //Infinity
+                console.log(-Infinity + 1) //-Infinity
+                console.log(1 / 0) //infinity
+                </code></pre>
+            </section>
+            <section>
+                <h3>Converting to different types of string</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    var someValue = 255
+                    console.log(someValue.toString()) // '255' same as .toString(10)
+                    console.log(someValue.toString(16)) // ff
+                    console.log(someValue.toString(8)) // 377
+                    console.log(someValue.toString(2)) // 11111111
+                </code></pre>
+            </section>
+            <section>
+                <h3>Number literals</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    console.log(255) // 255
+                    console.log(0o377) // 255 but in octal
+                    console.log(0xff) // 255 in hex
+                    console.log(0b11111111) // 255 but in binary
+                </code></pre>
+            </section>
+            <section>
+                <h3>Properties</h3>
+                <img src="images/number-properties.png"/>
+            </section>
+            <section>
+                <h3>Functions</h3>
+                <img src="images/number-functions.png"/>
+            </section>
+        </section><!--Number-->
+        <section>
+            <section>
+                <h3>Boolean</h3>
+                <img src="images/joke-false-itss-funny-because-its-true.png">
+            </section>
+            <section>
+                <img src="images/boolean-prop-fun.png">
+                <p>Not the same as truthy & falsy!</p>
+            </section>
+        </section><!--Boolean-->
+        <section>
+            <section>
+                <h3>Undefined</h3>
+                <img src="images/undefined_feelings_by_jeffrey.png"/>
+            </section>
+            <section>
+                <p>Means that the value has not been defined</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    console.log(a); //undefined
+                    var a;
+                </code></pre>
+            </section>
+        </section><!--Undefined-->
+        <section>
+            <section>
+                <h3>Object</h3>
+                <img src="images/objectify.jpg">
+            </section>
+            <section>
+                <p>In JavaScript, objects are just key-value pairs.<br>Aka a dictionary</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let myObject = {
+                        firstProperty: 1,
+                        secondProperty: 'string',
+                        thirdProperty: {
+                            firstInner: 'hi'
+                        },
+                        'Omg you can have spaces': {
+                            something: {
+                                3: 'dynamic'
+                            }
+                        }
+                    }
+
+                    console.log(myObject.thirdProperty.firstInner) //hi
+                    console.log(myObject['Omg you can have spaces'].something[3]) //dynamic
+                </code></pre>
+            </section>
+            <section>
+                <img src="images/object-functions-1.png">
+            </section>
+            <section>
+                <img src="images/object-functions-2.png">
+            </section>
+            <section>
+                <h3>Changes at runtime!</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let myObject = {}
+                    myObject.newProp = {}
+                    myObject.newProp.isAwesome = true
+                    const propName = 'Awesome Property';
+                    myObject[propName] = {
+                        a:1,
+                        b:2,
+                        c:3
+                    }
+                    console.log(myObject.newProp.isAwesome) // true
+                    console.log(Object.keys(myObject[propName]).length) //3
+                </code></pre>
+            </section>
+        </section><!--Object-->
         <!--TODO------------------------------------------------------------------->
 
 
         <!--Start Types------------------------------------------------------------------->
-        <section>
-            <h3>String</h3>
-            * escaping special characters
-            *\',\",\\, \n
-            * Do not create strings as objects = new String()
-            https://www.w3schools.com/js/js_string_methods.asp
-            * +
-            * +=
-        </section><!--String-->
-        <section>
-            <h3>Number</h3>
-            * Number (64-bit Floating Point)
-            * Integers - accurate up to 15 digits
-            * The maximum number of decimals is 17
-            * Inacurate arithmetic with decimals, mutiply & divide!
-            * Do not create numbers as objects = new Number()
-            * NaN (Number) - 100 / "Apple"
-            * isNaN()
-            * Infinity & -Infinity (Number)
-            * Hex (0xFF)
-            * [Number methods](https://www.w3schools.com/js/js_number_methods.asp)
-            * toString(base) 16(hex) | 10(standard) | 8(octal) | 2(binary)
-            .toFixed( 2 )
-        </section><!--Number-->
-        <section>
-            <h3>Boolean</h3>
-        </section><!--Boolean-->
-        <section>
-            <h3>Undefined</h3>
-        </section><!--Undefined-->
-        <section>
-            <h3>Object</h3>
-            * just a dictionary
-            * dot notation
-            * Bracket notation
-            .constructor property
-        </section><!--Object-->
+
+
+
+
+
         <section>
             <h3>Function</h3>
             arguments
@@ -665,7 +814,9 @@
                         b: 43
                     } //error in ES5
                 </code></pre>
-                <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Duplicate_property_names">This link</a> has an explanation as to why</p>
+                <p><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Duplicate_property_names">This
+                    link</a> has an explanation as to why</p>
             </section>
             <section>
                 <p>Assignment to a non-writable property</p>
@@ -713,7 +864,8 @@
                     let a = 0o363; //fine
                 </code></pre>
                 <a href="developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">And more</a><br>
-                <a href="https://gist.github.com/david-mark/7a06527c5e9da908ae50a73b60ddb57f">Why not to use strict mode</a>
+                <a href="https://gist.github.com/david-mark/7a06527c5e9da908ae50a73b60ddb57f">Why not to use strict
+                    mode</a>
             </section>
         </section><!--Strict Mode-->
         <section>
