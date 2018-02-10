@@ -121,7 +121,9 @@
         </section>
         <section>
             <img src="images/js-libs.png"><br>
-            <a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">Satire article about learning JS</a>
+            <i>"I need to display data on a page, not perform Sub Zero’s original MK fatality."</i> -
+            <a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">Satire article about
+                learning JS</a>
         </section>
         <section>
             <h3>Running in Chrome </h3>
@@ -187,7 +189,6 @@
                 be
                 multiline*/
             </code></pre>
-            * /* todo */
         </section><!--Comments-->
         <section>
             <h3>Semicolons</h3>
@@ -673,6 +674,18 @@
                 </code></pre>
             </section>
             <section>
+                <h3>Template Strings</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    for (let i = 0; i < 4; i++) {
+                        console.log(`[${i}] Hello World!`)
+                    }
+                    /*  [0] Hello World!
+                        [1] Hello World!
+                        [2] Hello World!
+                        [3] Hello World! */
+                </code></pre>
+            </section>
+            <section>
                 <img src="images/string-properties.png"><br>
             </section>
             <section>
@@ -763,6 +776,21 @@
                 </code></pre>
             </section>
         </section><!--Undefined-->
+        <section>
+            <section>
+                <h3>null</h3>
+                <img src="images/cant-handle-the-null.jpg">
+            </section>
+            <section>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    console.log(null > 0) // false
+                    console.log(null == 0) // false
+                    console.log(null >= 0) // true
+                </code></pre>
+                <img src="images/what-the-fuck.gif"><br>
+                <a href="https://blog.campvanilla.com/javascript-the-curious-case-of-null-0-7b131644e274">Explanation</a>
+            </section>
+        </section><!--null-->
         <section>
             <section>
                 <h3>Symbol</h3>
@@ -1100,10 +1128,12 @@
             </section>
             <section>
                 <img src="images/layers.jpg">
-                <p>Just like this image is made up of multiple layers that seem like one picture when combined, so too are objects in JS</p>
+                <p>Just like this image is made up of multiple layers that seem like one picture when combined, so too
+                    are objects in JS</p>
             </section>
             <section>
-                <p>We can take advantage of this to combine objects together rather than inheriting from a base class</p>
+                <p>We can take advantage of this to combine objects together rather than inheriting from a base
+                    class</p>
                 <pre><code class="JavaScript" data-trim data-noescape>
                     let foo = {
                         a: 42
@@ -1117,7 +1147,16 @@
                     bar.a // 67 <-- delegated to `foo`
                 </code></pre>
             </section>
+            <section>
+                <a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9">Master
+                    the JavaScript Interview: What’s the Difference Between Class & Prototypal Inheritance?</a>
+            </section>
         </section><!--Prototypical Inheritance-->
+        <section>
+            <h3>JSON</h3>
+            <p>JavaScript Object Notation. A way to serialise objects to strings.</p>
+            <img src="images/json-for-normies.jpg">
+        </section><!--JSON-->
         <section>
             <h3>Polyfill</h3>
             <img src="images/twilight_spackle_by_itchymango-d3dcjqq.jpg"><br>
@@ -1131,31 +1170,67 @@
             <h3>Bundling & Minification</h3>
             <img src="images/webpack-lol.jpg">
         </section><!--Bundling-->
+
         <!--TODO------------------------------------------------------------------->
 
-        <section>
-            <h3>JSON</h3>
-            insert image of Jayson from Friday 13th
-        </section><!--JSON-->
+
         <section>
             <section>Useful built in functions</section>
             <section>
                 <h3>Math</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    console.log(`iPhone Price: $${(Math.random() * 1500).toFixed(2)}`)
+                </code></pre>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">MDN
+                    Reference</a>
             </section>
             <section>
                 <h3>Array</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let queue = [1, 2, 3, 4]
+                    queue.push(5)
+                    console.log(queue) // [ 1, 2, 3, 4, 5 ]
+                    console.log(queue.pop())
+                    console.log(queue) // [ 1, 2, 3, 4 ]
+                </code></pre>
+                <a href="https://sdras.github.io/array-explorer/">Tricks when working with arrays</a><br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">MDN
+                    Reference</a>
             </section>
             <section>
                 <h3>Date</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    const now = new Date()
+                    console.log(now.toISOString())
+                    //2018-02-10T19:48:20.944Z
+                </code></pre>
+                <a href="https://momentjs.com/">Use Moment.js to work with dates rather</a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">MDN
+                    Reference</a>
             </section>
             <section>
                 <h3>JSON</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    const a = { a: 1, b: 2 }
+                    let jsonStirng = JSON.stringify(a, null, 4) // use 4 spaces
+                    console.log(jsonStirng) //pretty
+                    const cloneOfA = JSON.parse(jsonStirng)
+                    /* {
+                           "a": 1,
+                           "b": 2
+                       } */
+                </code></pre>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON">MDN
+                    Reference</a>
             </section>
             <section>
                 <h3>Void</h3>
-            </section>
-            <section>
-                <h3>null</h3>
+                <p>same as </p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    function myVoid(expr) {
+                        return undefined;
+                    }
+                </code></pre>
             </section>
             <section>
                 <h3>document</h3>

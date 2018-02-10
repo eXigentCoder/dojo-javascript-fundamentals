@@ -1,14 +1,6 @@
 'use strict'
-let foo = {
-    a: 42
-}
-
-// create `bar` and link it to `foo`
-let bar = Object.create(foo)
-
-bar.b = 'hello world'
-
-bar.b // "hello world"
-bar.a // 42 <-- delegated to `foo`
-foo.a = 67
-bar.a // 67 <-- delegated to `foo`
+let queue = [1, 2, 3, 4]
+queue.push(5)
+console.log(queue) // [ 1, 2, 3, 4, 5 ]
+console.log(queue.pop())
+console.log(queue) // [ 1, 2, 3, 4 ]
