@@ -25,10 +25,6 @@
 <body>
 <div class="reveal">
     <div class="slides">
-        <!--Work Area------------------------------------------------------------------->
-        <section data-background-image="/images/fruit-loops.jpg">
-            <h3>Loops</h3>
-        </section><!--Loops-->
         <!--Intro------------------------------------------------------------------->
         <section>
             <img src="/images/js.png">
@@ -38,6 +34,9 @@
                 the speaker notes window (hit 's' on your keyboard).
             </aside>
         </section>
+        <!--Start Work Area------------------------------------------------------------------->
+
+        <!--End Work Area------------------------------------------------------------------->
         <section data-background-image="/images/JavaScript-code-background.jpg">
             <div style="background-color: #1a1a1a">
                 <h3>This presentation is JavaScript!*</h3>
@@ -48,7 +47,7 @@
         <section>
             JavaScript is dynamic
             <pre>
-                <code data-trim data-noescape>
+                <code class="JavaScript" data-trim data-noescape>
                 let myAwesomeVariable = "Emotionally stable";
                 myAwesomeVariable = false;
                 </code>
@@ -139,17 +138,18 @@
             <img src="images/get-on-with-it.gif">
         </section>
         <section>
-            <h3>You don't know JS & Mozilla Developer Network</h3>
+            <h3>Sources and Learn More</h3>
             The following slides are from the <a
             href="https://github.com/getify/You-Dont-Know-JS/blob/master/up%20%26%20going/ch1.md">You Don't Know JS</a>
-            book and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Mozilla Developer Network</a>.
-            Both are great resources to check out
+            book and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators">Mozilla
+            Developer Network</a> and <a href="https://www.w3schools.com/jsref/">W3 Schools</a>
+            Which are great resources to check out.
         </section>
         <section>
             <h3>Statements</h3>
             In a computer language, a group of words, numbers, and operators that performs a specific task is a
             statement. In JavaScript, a statement might look as follows:
-            <pre><code data-trim data-noescape>
+            <pre><code class="JavaScript" data-trim data-noescape>
                 var a = 1 + 2;
             </code></pre>
             <ul>
@@ -163,7 +163,7 @@
             <h3>Expressions</h3>
             Statements are made up of one or more expressions. An expression is any reference to a variable or value, or
             a set of variable(s) and value(s) combined with operators.
-            <pre><code data-trim data-noescape>
+            <pre><code class="JavaScript" data-trim data-noescape>
                 var a = b * 2;
             </code></pre>
             <ul>
@@ -177,7 +177,7 @@
         <section>
             <h3>Comments</h3>
             Two styles:
-            <pre><code data-trim data-noescape>
+            <pre><code class="JavaScript" data-trim data-noescape>
                 var a = 42; // Everything from start to the EOL is a comment
                 var b = /* zomg what's going on */ 3; /* only stuff between
                 the symbols is a comment, it can
@@ -187,6 +187,154 @@
             </code></pre>
             * /* todo */
         </section><!--Comments-->
+        <section>
+            <h3>Semicolons</h3>
+            The new tabs vs spaces
+            <img src="images/tabs-vs-spaces.png">
+            <aside class="notes">
+                If using minification/bundling etc need to make sure the lib you using will add these back in.
+                Makes the code more readable
+            </aside>
+        </section><!--Semicolons-->
+        <section>
+            <section>
+                <h3>Variables</h3>
+                <img src="images/variables.jpg">
+            </section>
+            <section>
+                <h3>var & let</h3>
+                <p>
+                    var behaves differently depending on if the scope is at block level or functional level
+                </p>
+                <p>let behaves consistently in both cases</p>
+            </section>
+            <section>
+                <h3>What is scope anyway?</h3>
+                <img src="images/scope.jpg">
+            </section>
+            <section>
+                <h3>No I'm talking about variable scope!</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    for (var i=0; i<10; i++) {
+                      // stuff
+                    }
+                    console.log(i) // => 10 (why oh why)
+                </code></pre>
+            </section>
+            <section>
+                <h3>We can fix this with ES6 let</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    for (let i=0; i<10; i++) {
+                      // stuff
+                    }
+                    console.log(i) // ReferenceError: i is not defined (Yay!)
+                </code></pre>
+            </section>
+            <section>
+                <h3>function and block scope</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    function canHasScope() {
+                        // function scope
+                        var a = 'z0mg'
+                        let b = 'QQ'
+                        function innerFun() {
+                            console.log(a + ' ' + b) //z0mg QQ
+                        }
+                        innerFun()
+                    }
+                    console.log(a) // ReferenceError: a is not defined
+                    console.log(b) // ReferenceError: b is not defined
+
+                    {
+                        var c = 'superSecret'
+                        let d = 'yeahRight'
+                    }
+                    console.log(c) //superSecret
+                    console.log(d) //ReferenceError: d is not defined
+
+                </code></pre>
+            </section>
+            <section>
+                <h3>Global Scope (Mostly bad)</h3>
+                <p>This is the top most scope level. window in browser, global in Node</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    function foo() {
+                        a = 1;	// `a` not formally declared
+                    }
+
+                    foo();
+                    a;			// 1 -- oops, auto global variable :(
+                </code></pre>
+            </section>
+            <section>
+                <img src="images/stop-pollution.jpg">
+            </section>
+            <section>
+                <h3>Prevent Pollution</h3>
+                Use an Immediately Invoked Function Expression (IIFE) or Module.
+                Automatic in Node.js. NB! Be careful if not using semicolons
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    var i = 0;
+                    void (function() {
+                        // your code here
+                        console.log(i++) //0
+                    })();
+                    (function() {
+                        // your code here
+                        console.log(i++) //1
+                    })();
+                    (function () {
+                        // your code here
+                        console.log(i++) //2
+                    }());
+                </code></pre>
+            </section>
+            <section>
+                <h3>Variable hoisting</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    'use strict'
+                    console.log(a) //undefined
+                    var a = 2
+                    console.log(b) //ReferenceError: a is not defined
+                </code></pre>
+            </section>
+            <section>
+                <h3>Const is all about memory references!</h3>
+                <p>follows the same scoping rules as let</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    const c = 'this cannot ever change'
+                    c = 'What about meow?' // will cause a runtime error TypeError: Assignment to constant variable.
+
+                    const dessert = { type: 'pie' };
+                    dessert.type = 'pudding'; // no problemo!
+                    console.log(dessert.type) // pudding
+                    dessert = { type: 'cake' }; // TypeError: Bad human!
+                </code></pre>
+            </section>
+            <section>
+                <h3>Multiple variable assignment</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = 2,
+                        b = 3,
+                        c = 7
+                    //don't do the following:
+                    let person = "John Doe", carName = "Volvo", price = 200;
+                </code></pre>
+            </section>
+        </section><!--Variables-->
+        <section>
+            <h3>Blocks</h3>
+            Normally attached to some sort of conditional or loop, but that is not required
+            <pre><code class="JavaScript" data-trim data-noescape>
+                var hello = 'Hello'
+
+                /* a block statement, will be executed when
+                 * the interpreter reaches it. */
+                {
+                    console.log(hello+' world!')
+                }
+            </code></pre>
+        </section><!--Blocks-->
         <section>
             <section>
                 <h3>(Smooth) Operators</h3>
@@ -220,105 +368,12 @@
         </section><!--Operators-->
         <section>
             <section>
-                <h3>Variables</h3>
-                <img src="images/variables.jpg">
-            </section>
-            <section>
-                <h3>var & let</h3>
-                <pre><code data-trim data-noescape>
-                    // Old school, don't use var anymore
-                    var a;
-                    a = 'Hello World';
-                    var b = 'I have block scope'
-                    // ES6 version
-                    let d = 'I have function scope'
-                </code></pre>
-            </section>
-            <section>
-                <h3>What is scope anyway?</h3>
-                <img src="images/scope.jpg">
-            </section>
-            <section>
-                <h3>No I'm talking about variable scope!</h3>
-                <pre><code data-trim data-noescape>
-                    function iHaveScope() {
-                      var secret = 42;
-                    }
-                    secret; // ReferenceError: secret is not defined (in this scope)
-                </code></pre>
-                <pre><code data-trim data-noescape>
-                    for (var i=0; i<10; i++) {
-                      // block scope for the for statement
-                    }
-                    console.log(i) // => 10 (why oh why)
-                </code></pre>
-            </section>
-            <section>
-                <pre><code data-trim data-noescape>
-                    for (let i=0; i<10; i++) {
-                      // block scope for the for statement
-                    }
-                    console.log(i) // ReferenceError: i is not defined (Yay!)
-                </code></pre>
-            </section>
-            <section>
-                <h3>Global Scope (Mostly bad)</h3>
-                <pre><code data-trim data-noescape>
-                    function foo() {
-                    a = 1;	// `a` not formally declared
-                    }
-
-                    foo();
-                    a;			// 1 -- oops, auto global variable :(
-                </code></pre>
-            </section>
-            <section>
-                <h3>Variable hoisting</h3>
-                <pre><code data-trim data-noescape>
-                    console.log(a) //undefined
-                    var a = 2
-                    console.log(b) //ReferenceError: a is not defined
-                </code></pre>
-            </section>
-            <section>
-                <h3>Strict mode</h3>
-            </section>
-            <section>
-                <h3>Const is all about memory references!</h3>
-                <pre><code data-trim data-noescape>
-                    const c = 'this cannot ever change'
-                    c = 'What about meow?' // will cause a runtime error TypeError: Assignment to constant variable.
-
-                    const dessert = { type: 'pie' };
-                    dessert.type = 'pudding'; // no problemo!
-                    console.log(dessert.type) // pudding
-                    dessert = { type: 'cake' }; // TypeError: Bad human!
-                </code></pre>
-                "Strict Mode"
-                <a href="https://edgecoders.com/function-scopes-and-block-scopes-in-javascript-25bbd7f293d7">Source</a>
-            </section>
-        </section><!--Variables-->
-        <section>
-            <h3>Blocks</h3>
-            Normally attached to some sort of conditional or loop, but that is not required
-            <pre><code data-trim data-noescape>
-                var hello = 'Hello'
-
-                /* a block statement, will be executed when
-                 * the interpreter reaches it. */
-                {
-                    console.log(hello+' world!')
-                }
-            </code></pre>
-        </section><!--Blocks-->
-        <section>
-            <section>
                 <h3>Conditionals</h3>
                 <img src="images/conditional.jpg">
             </section>
             <section>
                 <h3>if ... else</h3>
-                <pre><code data-trim data-noescape>
+                <pre><code class="JavaScript" data-trim data-noescape>
                     var expression1, expression2
 
                     if (expression1) {
@@ -333,14 +388,14 @@
             <section>
                 <h3>Ternery</h3>
                 Shorthand if/else statement
-                <pre><code data-trim data-noescape>
+                <pre><code class="JavaScript" data-trim data-noescape>
                     var status = (age >= 18) ? 'adult' : 'minor';
                 </code></pre>
             </section>
             <section>
                 <h3>Switch</h3>
-                <pre><code data-trim data-noescape>
-                    switch (someVariable) {
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    switch (someExpression) {
                         case 1: //will "fall through to case 2"
                         case 2:
                             // do something
@@ -359,10 +414,47 @@
                 </code></pre>
             </section>
         </section><!--Conditionals-->
-        <!--TODO------------------------------------------------------------------->
+        <section data-background-image="/images/fruit-loops.jpg">
+            <section>
+                <h3>Loops</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                while (someExpression) {
+                    // run some code in the block until someExpression is falsy
+                }
 
+                do {
+                    /* Do this code block at least once
+                     * Then check someExpression
+                     * More of a yoda form of coding, try avoid. */
+                } while (someExpression)
+            </code></pre>
+            </section>
+            <section>
+                <h3>break</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    //Please don't do this
+                    while (true) {
+                        if (omgThisIsRetarded) {
+                            break
+                        }
+                    }
+                </code></pre>
+                <img src="images/break.gif"><br>
+            </section>
+            <section>
+                <h3>for</h3>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    for (runOnceAtStart; checkCondition; runAfterEachIteration) {
+                        //doSomething
+                    }
 
-        <!--Start Types------------------------------------------------------------------->
+                    for (let i = 0; i <= 9; i = i + 1) {
+                        console.log(i)
+                    }
+                    // 0 1 2 3 4 5 6 7 8 9
+                </code></pre>
+            </section>
+        </section><!--Loops-->
         <section>
             <section>
                 <h3>Data Types</h3>
@@ -374,9 +466,17 @@
                     <li>string</li>
                     <li>number</li>
                     <li>boolean</li>
+                    <li>null</li>
                     <li>undefined</li>
                     <li>Symbol (ES6)</li>
                 </ul>
+                <p>Assigning copies the value</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = 'hi'
+                    let b = a
+                    b += ' there'
+                    console.log(a) // hi
+                </code></pre>
             </section>
             <section>
                 <h3>Complex</h3>
@@ -384,24 +484,86 @@
                     <li>object</li>
                     <li>function</li>
                 </ul>
+                <p>Assigning copies the memory reference</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = { 'hi': 2 }
+                    let b = a
+                    b.potato = true
+                    console.log(a) // { hi: 2, potato: true }
+                </code></pre>
             </section>
             <section>
-                <h3>truthy & falsely</h3>
-                "" (empty string)
-                0, -0, NaN (invalid number)
-                null, undefined
-                false
+                <h3>Truthy & falsely</h3>
+                <p>The following values are falsy</p>
+                <ul>
+                    <li>'', "" (empty strings)</li>
+                    <li>0, -0, NaN (invalid number)</li>
+                    <li>null, undefined</li>
+                    <li>false</li>
+                </ul>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    //!!value will tell you if something is truthy use the REPL
+                    !!NaN // false
+                </code></pre>
             </section>
             <section>
                 <h3>typeof</h3>
+                <p>Not a function but an operator. Will tell you the type of the value.</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    console.log(typeof a) //undefined
+                    console.log(typeof undefined) //undefined
+                    console.log(typeof '') //string
+                    console.log(typeof 1) //number
+                    console.log(typeof true) //boolean
+                    console.log(typeof {}) //object
+                    console.log(typeof null) /*object !NB be careful of this null is
+                    not actually an object. this is a bug that cannot be fixed as
+                    it will break the internet */
+                    console.log(typeof Symbol()) //symbol
+                    console.log(typeof function () {}) //function
+                </code></pre>
+                <a href="http://2ality.com/2013/10/typeof-null.html">The history of “typeof null”</a>
+            </section>
+            <section>
+                <h3>instanceof</h3>
+                <p>Not a function but an operator. Will walk up the prototype chain and tell you if the
+                    first object is a decendant of the second object</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = {
+                        potato: true
+                    }
+                    function Car(make = 'Honda', model = 'Accord', year = 1998) {
+                        this.make = make
+                        this.model = model
+                        this.year = year
+                    }
+                    var demonHunter = new Car('Chevy', 'Impala', 1967)
+                    console.log(demonHunter instanceof Car) // true
+                    console.log(demonHunter.model) // Impala
+                    console.log(a instanceof Car) // false
+                    Object.setPrototypeOf(a, demonHunter)
+                    console.log(a.make) // Chevy
+                    demonHunter.year = 1970
+                    console.log(a.year) //1970
+                    console.log(a.potato) //true
+                </code></pre>
+            </section>
+            <section>
+                <img src="images/Wtf-Did-I-Just-Read-Wtf-Meme-Image.jpg">
             </section>
         </section><!--Data Types-->
+        <!--TODO------------------------------------------------------------------->
+
+
+        <!--Start Types------------------------------------------------------------------->
         <section>
             <h3>String</h3>
             * escaping special characters
             *\',\",\\, \n
             * Do not create strings as objects = new String()
             https://www.w3schools.com/js/js_string_methods.asp
+            * +
+            * +=
         </section><!--String-->
         <section>
             <h3>Number</h3>
@@ -434,6 +596,14 @@
         <section>
             <h3>Function</h3>
             arguments
+            hoisting
+            * named
+            * anonomous
+            * as a variable
+            * arrow
+            * return keyword
+            * parameters
+            * invocation
         </section><!--Function-->
         <section>
             <h3>Symbol</h3>
@@ -444,36 +614,143 @@
         </section><!--Type Coercion-->
         <!--End Types------------------------------------------------------------------->
         <section>
+            <h3>Prototypical Inheritance</h3>
+        </section><!--Prototypical Inheritance-->
+        <section>
+            <section>
+                <h3>'use strict'</h3>
+                <img src="images/strict-teacher-7.jpg">
+                <p>Always*</p>
+            </section>
+            <section>
+                <ul>
+                    <li>Added in ES5</li>
+                    <li>More maintainable by humans*</li>
+                    <li>More optimisable by the engine*</li>
+                    <li>Should always be at the top of the file</li>
+                    <li>Does work as top line of function. But Don't</li>
+                </ul>
+            </section>
+            <section>
+                <p>No more auto-global variables when you forget var</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    'use strict';
+                    mistypeVariable = 17; //error
+                </code></pre>
+            </section>
+            <section>
+                <p>Setting undefined to a value</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    undefined = 2 //error
+                </code></pre>
+            </section>
+            <section>
+                <p>Assignment to a non-writable global. May only work in certain situations</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let undefined = 5; // throws a TypeError
+                    let Infinity = 5; // throws a TypeError
+                </code></pre>
+            </section>
+            <section>
+                <p>Duplicate function parameters</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    function asd(a, b, a) {} //error
+                </code></pre>
+            </section>
+            <section>
+                <p>Duplicate properties. An error in ES5 only not in ES6.</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = {
+                        b: 42,
+                        b: 43
+                    } //error in ES5
+                </code></pre>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Duplicate_property_names">This link</a> has an explanation as to why</p>
+            </section>
+            <section>
+                <p>Assignment to a non-writable property</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let obj1 = {}
+                    Object.defineProperty(obj1, 'x', { value: 42, writable: false })
+                    obj1.x = 9 // throws a TypeError
+                </code></pre>
+            </section>
+            <section>
+                <p>Assignment to a getter-only property</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let obj2 = {
+                        get x() {
+                            return 17
+                        }
+                    }
+                    obj2.x = 5 // throws a TypeError
+                </code></pre>
+            </section>
+            <section>
+                <p>Assignment to a new property on a non-extensible object</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let fixed = {}
+                    Object.preventExtensions(fixed)
+                    fixed.newProp = 'ohai' // throws a TypeError
+                </code></pre>
+            </section>
+            <section>
+                <p>Throws an error if you try delete undeletable properties. previously no effect.</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    delete Object.prototype // throws a TypeError
+                </code></pre>
+            </section>
+            <section>
+                <p>Throws an error when trying to set a property on a primitive</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    (1).hiThere = "heya!"
+                </code></pre>
+            </section>
+            <section>
+                <p>Octal numbers need a o between the 0 and the value</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = 0363 //error
+                    let a = 0o363; //fine
+                </code></pre>
+                <a href="developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">And more</a><br>
+                <a href="https://gist.github.com/david-mark/7a06527c5e9da908ae50a73b60ddb57f">Why not to use strict mode</a>
+            </section>
+        </section><!--Strict Mode-->
+        <section>
             <h3>JSON</h3>
             insert image of Jayson from Friday 13th
         </section><!--JSON-->
         <section>
             <section>Useful built in functions</section>
             <section>
-                <section>
-                    <h3>Math</h3>
-                </section>
-                <section>
-                    <h3>Array</h3>
-                </section>
-                <section>
-                    <h3>Date</h3>
-                </section>
-                <section>
-                    <h3>JSON</h3>
-                </section>
-                <section>
-                    <h3>Void</h3>
-                </section>
-                <section>
-                    <h3>null</h3>
-                </section>
-                <section>
-                    <h3>document</h3>
-                </section>
-                <section>
-                    <h3>window</h3>
-                </section>
+                <h3>Math</h3>
+            </section>
+            <section>
+                <h3>Array</h3>
+            </section>
+            <section>
+                <h3>Date</h3>
+            </section>
+            <section>
+                <h3>JSON</h3>
+            </section>
+            <section>
+                <h3>Void</h3>
+            </section>
+            <section>
+                <h3>null</h3>
+            </section>
+            <section>
+                <h3>document</h3>
+            </section>
+            <section>
+                <h3>window</h3>
+            </section>
+            <section>
+                <h3>global</h3>
+            </section>
+            <section>
+                <h3>Error</h3>
             </section>
         </section><!--built in functions-->
     </div>
@@ -501,3 +778,4 @@
 </script>
 </body>
 </html>
+
