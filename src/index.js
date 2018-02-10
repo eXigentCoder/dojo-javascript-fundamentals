@@ -1,10 +1,14 @@
 'use strict'
-console.log(typeof ('' + 5)) //string
-console.log(typeof ('1' + 5)) //string
-console.log(typeof (5 + '1')) //string
-console.log(typeof ('1' - 5)) //number
-console.log(typeof ('1' * 5)) //number
-console.log('1' < 5) //true
-console.log('1' < '5') //true NOTE this is alphabetically less.
-console.log('b' < 'a') //false (alphabetically)
-console.log('4' == 4) //true
+let foo = {
+    a: 42
+}
+
+// create `bar` and link it to `foo`
+let bar = Object.create(foo)
+
+bar.b = 'hello world'
+
+bar.b // "hello world"
+bar.a // 42 <-- delegated to `foo`
+foo.a = 67
+bar.a // 67 <-- delegated to `foo`

@@ -25,6 +25,7 @@
 <body>
 <div class="reveal">
     <div class="slides">
+
         <!--Intro------------------------------------------------------------------->
         <section>
             <img src="/images/js.png">
@@ -34,9 +35,6 @@
                 the speaker notes window (hit 's' on your keyboard).
             </aside>
         </section>
-        <!--Start Work Area------------------------------------------------------------------->
-
-        <!--End Work Area------------------------------------------------------------------->
         <section data-background-image="/images/JavaScript-code-background.jpg">
             <div style="background-color: #1a1a1a">
                 <h3>This presentation is JavaScript!*</h3>
@@ -120,6 +118,10 @@
                 <h3>Internet of Things (IOT)</h3>
                 <img src="images/iot_js-min.png">
             </section>
+        </section>
+        <section>
+            <img src="images/js-libs.png"><br>
+            <a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">Satire article about learning JS</a>
         </section>
         <section>
             <h3>Running in Chrome </h3>
@@ -769,7 +771,9 @@
             </section>
             <section>
                 <p>
-                    Every symbol value returned from Symbol() is unique.  A symbol value may be used as an identifier for object properties; this is the data type's only purpose.  Some further explanation about purpose and usage can be found in the glossary entry for Symbol.
+                    Every symbol value returned from Symbol() is unique. A symbol value may be used as an identifier for
+                    object properties; this is the data type's only purpose. Some further explanation about purpose and
+                    usage can be found in the glossary entry for Symbol.
                 </p>
             </section>
             <section>
@@ -843,7 +847,9 @@
                 <img src="images/yo_dawg_function.jpg">
             </section>
             <section>
-                A function is a code snippet that can be called by other code or by itself, or a variable that refers to the function. When a function is called, arguments are passed to the function as input, and the function can optionally return an output. A function in JavaScript is also an object.
+                A function is a code snippet that can be called by other code or by itself, or a variable that refers to
+                the function. When a function is called, arguments are passed to the function as input, and the function
+                can optionally return an output. A function in JavaScript is also an object.
             </section>
             <section>
                 <pre><code class="JavaScript" data-trim data-noescape>
@@ -919,7 +925,8 @@
             </section>
             <section>
                 <h3>Closure</h3>
-                <p>You can think of closure as a way to "remember" and continue to access a function's scope (its variables) even once the function has finished running.</p>
+                <p>You can think of closure as a way to "remember" and continue to access a function's scope (its
+                    variables) even once the function has finished running.</p>
                 <pre><code class="JavaScript" data-trim data-noescape>
                     function makeAdder(x) {
                         function add(y) {
@@ -1070,10 +1077,62 @@
                     mode</a>
             </section>
         </section><!--Strict Mode-->
-        <!--TODO------------------------------------------------------------------->
         <section>
-            <h3>Prototypical Inheritance</h3>
+            <section>
+                <h3>Prototypes</h3>
+                <img src="images/military-humor-funny-its-a-prototype-tank.jpg">
+            </section>
+            <section>
+                <p>
+                    This is a fairly advanced concept. JS doesn't use class based inheritance like other langauges.
+                    This is a good thing as it gives JS it's power. Each object is part of a chain of objects leading
+                    back to the base Object instance.
+                </p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let a = {}
+                    a.__proto__.toString = function() {
+                        return 'hi'
+                    }
+                    console.log(a.toString()) //hi
+                    var b = {}
+                    console.log(b.toString()) //hi
+                </code></pre>
+            </section>
+            <section>
+                <img src="images/layers.jpg">
+                <p>Just like this image is made up of multiple layers that seem like one picture when combined, so too are objects in JS</p>
+            </section>
+            <section>
+                <p>We can take advantage of this to combine objects together rather than inheriting from a base class</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let foo = {
+                        a: 42
+                    }
+                    // create `bar` and link it to `foo`
+                    let bar = Object.create(foo)
+
+                    bar.b = 'hello world'
+                    bar.a // 42 <-- delegated to `foo`
+                    foo.a = 67 // Changes persist dude to just being a memory reference.
+                    bar.a // 67 <-- delegated to `foo`
+                </code></pre>
+            </section>
         </section><!--Prototypical Inheritance-->
+        <section>
+            <h3>Polyfill</h3>
+            <img src="images/twilight_spackle_by_itchymango-d3dcjqq.jpg"><br>
+            <a href="https://github.com/es-shims/">Shims</a>
+        </section><!--Polyfill-->
+        <section>
+            <h3>Transpiling</h3>
+            <img src="images/babel.png">
+        </section><!--Transpiling-->
+        <section>
+            <h3>Bundling & Minification</h3>
+            <img src="images/webpack-lol.jpg">
+        </section><!--Bundling-->
+        <!--TODO------------------------------------------------------------------->
+
         <section>
             <h3>JSON</h3>
             insert image of Jayson from Friday 13th
