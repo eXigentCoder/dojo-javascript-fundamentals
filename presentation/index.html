@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="css/reveal.css">
     <link rel="stylesheet" href="css/theme/league.css">
+    <link rel="stylesheet" href="css/custom.css">
 
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,11 +25,11 @@
 <body>
 <div class="reveal">
     <div class="slides">
-
-        <!--------------------------------------------------------------------->
-        <!--------------------------------------------------------------------->
-        <!--------------------------------------------------------------------->
-        <!--------------------------------------------------------------------->
+        <!--Work Area------------------------------------------------------------------->
+        <section data-background-image="/images/fruit-loops.jpg">
+            <h3>Loops</h3>
+        </section><!--Loops-->
+        <!--Intro------------------------------------------------------------------->
         <section>
             <img src="/images/js.png">
             <h1>JavaScript</h1>
@@ -80,12 +81,12 @@
             </section>
             <section>
                 <h3>Most In Demand Requests</h3>
-                <img style="height: 400px;" src="images/most-in-demand.webp"><br>
+                <img src="images/most-in-demand.webp"><br>
                 <a href="https://stackify.com/popular-programming-languages-2018/">Source</a>
             </section>
             <section>
                 <h3>Most Pull Requests</h3>
-                <img style="height: 400px;" src="images/most-pull-requests.webp"><br>
+                <img src="images/most-pull-requests.webp"><br>
                 <a href="https://stackify.com/popular-programming-languages-2018/">Source</a>
             </section>
             <section>
@@ -94,7 +95,7 @@
             </section>
             <section>
                 <h3>Browsers (OFC!)</h3>
-                <img style="height: 400px;" src="images/ie-fail.jpg">
+                <img src="images/ie-fail.jpg">
             </section>
             <section>
                 <h3>Servers</h3>
@@ -125,13 +126,14 @@
             <h3>Running in Chrome </h3>
             <small>Hit F12</small>
             <br>
-            <img style="height: 400px;" src="images/beer-o-clock.png"/>
+            <img src="images/beer-o-clock.png"/>
         </section>
         <section>
-            <h3>Running from the REPL</h3>
+            <h3>Running from the Node.JS REPL</h3>
             <img src="images/repl.png"><br>
             <small>Make sure you have Node.JS installed</small>
         </section>
+        <!--Language------------------------------------------------------------------->
         <section>
             <h3>The language itself</h3>
             <img src="images/get-on-with-it.gif">
@@ -156,7 +158,7 @@
                 <li>1 is a value or literal value</li>
                 <li><strong>;</strong> is the statement terminator. Depending on your context it may be unnecessary</li>
             </ul>
-        </section>
+        </section><!--Statements-->
         <section>
             <h3>Expressions</h3>
             Statements are made up of one or more expressions. An expression is any reference to a variable or value, or
@@ -168,11 +170,23 @@
                 <li><strong>2</strong> is a literal value expression</li>
                 <li><strong>b</strong> is a variable expression, which means to retrieve its current value</li>
                 <li><strong>b * 2</strong> is an arithmetic expression, which means to do the multiplication</li>
-                <li><strong>a = b * 2</strong> is an assignment expression, which means to assign the result of the b *
-                    2 expression to the variable a
+                <li><strong>a = b * 2</strong> is an assignment expression
                 </li>
             </ul>
-        </section>
+        </section><!--Expressions-->
+        <section>
+            <h3>Comments</h3>
+            Two styles:
+            <pre><code data-trim data-noescape>
+                var a = 42; // Everything from start to the EOL is a comment
+                var b = /* zomg what's going on */ 3; /* only stuff between
+                the symbols is a comment, it can
+                also
+                be
+                multiline*/
+            </code></pre>
+            * /* todo */
+        </section><!--Comments-->
         <section>
             <section>
                 <h3>(Smooth) Operators</h3>
@@ -203,7 +217,7 @@
                 <h4>Bitwise Shift</h4>
                 <img src="images/bitwise-shift-operators.png">
             </section>
-        </section>
+        </section><!--Operators-->
         <section>
             <section>
                 <h3>Variables</h3>
@@ -222,7 +236,7 @@
             </section>
             <section>
                 <h3>What is scope anyway?</h3>
-                <img style="height: 400px;" src="images/scope.jpg">
+                <img src="images/scope.jpg">
             </section>
             <section>
                 <h3>No I'm talking about variable scope!</h3>
@@ -248,6 +262,28 @@
                 </code></pre>
             </section>
             <section>
+                <h3>Global Scope (Mostly bad)</h3>
+                <pre><code data-trim data-noescape>
+                    function foo() {
+                    a = 1;	// `a` not formally declared
+                    }
+
+                    foo();
+                    a;			// 1 -- oops, auto global variable :(
+                </code></pre>
+            </section>
+            <section>
+                <h3>Variable hoisting</h3>
+                <pre><code data-trim data-noescape>
+                    console.log(a) //undefined
+                    var a = 2
+                    console.log(b) //ReferenceError: a is not defined
+                </code></pre>
+            </section>
+            <section>
+                <h3>Strict mode</h3>
+            </section>
+            <section>
                 <h3>Const is all about memory references!</h3>
                 <pre><code data-trim data-noescape>
                     const c = 'this cannot ever change'
@@ -258,9 +294,188 @@
                     console.log(dessert.type) // pudding
                     dessert = { type: 'cake' }; // TypeError: Bad human!
                 </code></pre>
+                "Strict Mode"
                 <a href="https://edgecoders.com/function-scopes-and-block-scopes-in-javascript-25bbd7f293d7">Source</a>
             </section>
-        </section>
+        </section><!--Variables-->
+        <section>
+            <h3>Blocks</h3>
+            Normally attached to some sort of conditional or loop, but that is not required
+            <pre><code data-trim data-noescape>
+                var hello = 'Hello'
+
+                /* a block statement, will be executed when
+                 * the interpreter reaches it. */
+                {
+                    console.log(hello+' world!')
+                }
+            </code></pre>
+        </section><!--Blocks-->
+        <section>
+            <section>
+                <h3>Conditionals</h3>
+                <img src="images/conditional.jpg">
+            </section>
+            <section>
+                <h3>if ... else</h3>
+                <pre><code data-trim data-noescape>
+                    var expression1, expression2
+
+                    if (expression1) {
+                        //do something if expression 1 is truthy
+                    } else if (expression2) {
+                        //do something if expression 2 is truthy
+                    } else {
+                        //do something if expression1 and expression2 are both falsy
+                    }
+                </code></pre>
+            </section>
+            <section>
+                <h3>Ternery</h3>
+                Shorthand if/else statement
+                <pre><code data-trim data-noescape>
+                    var status = (age >= 18) ? 'adult' : 'minor';
+                </code></pre>
+            </section>
+            <section>
+                <h3>Switch</h3>
+                <pre><code data-trim data-noescape>
+                    switch (someVariable) {
+                        case 1: //will "fall through to case 2"
+                        case 2:
+                            // do something
+                            break
+                        case 7:
+                            // do some other thing
+                            break
+                        case 42:
+                            {
+                                //do a whole block of things
+                            }
+                            break
+                        default:
+                        // default to here if none of the cases match
+                    }
+                </code></pre>
+            </section>
+        </section><!--Conditionals-->
+        <!--TODO------------------------------------------------------------------->
+
+
+        <!--Start Types------------------------------------------------------------------->
+        <section>
+            <section>
+                <h3>Data Types</h3>
+                <img src="images/data-star-trek.jpg">
+            </section>
+            <section>
+                <h3>Simple</h3>
+                <ul>
+                    <li>string</li>
+                    <li>number</li>
+                    <li>boolean</li>
+                    <li>undefined</li>
+                    <li>Symbol (ES6)</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Complex</h3>
+                <ul>
+                    <li>object</li>
+                    <li>function</li>
+                </ul>
+            </section>
+            <section>
+                <h3>truthy & falsely</h3>
+                "" (empty string)
+                0, -0, NaN (invalid number)
+                null, undefined
+                false
+            </section>
+            <section>
+                <h3>typeof</h3>
+            </section>
+        </section><!--Data Types-->
+        <section>
+            <h3>String</h3>
+            * escaping special characters
+            *\',\",\\, \n
+            * Do not create strings as objects = new String()
+            https://www.w3schools.com/js/js_string_methods.asp
+        </section><!--String-->
+        <section>
+            <h3>Number</h3>
+            * Number (64-bit Floating Point)
+            * Integers - accurate up to 15 digits
+            * The maximum number of decimals is 17
+            * Inacurate arithmetic with decimals, mutiply & divide!
+            * Do not create numbers as objects = new Number()
+            * NaN (Number) - 100 / "Apple"
+            * isNaN()
+            * Infinity & -Infinity (Number)
+            * Hex (0xFF)
+            * [Number methods](https://www.w3schools.com/js/js_number_methods.asp)
+            * toString(base) 16(hex) | 10(standard) | 8(octal) | 2(binary)
+            .toFixed( 2 )
+        </section><!--Number-->
+        <section>
+            <h3>Boolean</h3>
+        </section><!--Boolean-->
+        <section>
+            <h3>Undefined</h3>
+        </section><!--Undefined-->
+        <section>
+            <h3>Object</h3>
+            * just a dictionary
+            * dot notation
+            * Bracket notation
+            .constructor property
+        </section><!--Object-->
+        <section>
+            <h3>Function</h3>
+            arguments
+        </section><!--Function-->
+        <section>
+            <h3>Symbol</h3>
+        </section><!--Symbol-->
+        <section>
+            <h3>Type Coercion</h3>
+            * Explicit vs implicit
+        </section><!--Type Coercion-->
+        <!--End Types------------------------------------------------------------------->
+        <section>
+            <h3>JSON</h3>
+            insert image of Jayson from Friday 13th
+        </section><!--JSON-->
+        <section>
+            <section>Useful built in functions</section>
+            <section>
+                <section>
+                    <h3>Math</h3>
+                </section>
+                <section>
+                    <h3>Array</h3>
+                </section>
+                <section>
+                    <h3>Date</h3>
+                </section>
+                <section>
+                    <h3>JSON</h3>
+                </section>
+                <section>
+                    <h3>Void</h3>
+                </section>
+                <section>
+                    <h3>null</h3>
+                </section>
+                <section>
+                    <h3>document</h3>
+                </section>
+                <section>
+                    <h3>window</h3>
+                </section>
+            </section>
+        </section><!--built in functions-->
     </div>
 </div>
 
