@@ -25,7 +25,39 @@
 <body>
 <div class="reveal">
     <div class="slides">
+        <section>
+            <section>
+                <h3>Error</h3>
+                <img src="images/maxresdefault.jpg">
+            </section>
+            <section>
+                <p>Errors are generally better than failing silently, the Error object allows us to add more context to an error message. A stack trace and line number can be included as well as context around the values that caused the error</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    // this:
+                    const x = new Error('I was created using a function call!')
+                    // has the same functionality as this:
+                    const y = new Error('I was constructed via the "new" keyword!')
 
+                    throw x
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    Error: I was created using a function call!
+                        at Object.<anonymous> (/home/ryan/development/dojo-javascript-fundamentals/src/index.js:4:11)
+                        at Module._compile (module.js:635:30)
+                        at Object.Module._extensions..js (module.js:646:10)
+                        at Module.load (module.js:554:32)
+                        at tryModuleLoad (module.js:497:12)
+                        at Function.Module._load (module.js:489:3)
+                        at Function.Module.runMain (module.js:676:10)
+                        at startup (bootstrap_node.js:187:16)
+                        at bootstrap_node.js:608:3
+
+                    Process finished with exit code 1
+                </code></pre>
+            </section>
+        </section><!--error-->
         <!--Intro------------------------------------------------------------------->
         <section>
             <img src="/images/js.png">
@@ -1170,10 +1202,66 @@
             <h3>Bundling & Minification</h3>
             <img src="images/webpack-lol.jpg">
         </section><!--Bundling-->
+        <section>
+            <section>
+                <h3>eval</h3>
+                <img src="images/good-and-eval.png">
+            </section>
+            <section>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    console.log(eval('2 + 2')) // 4
+                    let x = 2,
+                        y = 4
+                    console.log(eval('x + y')) // local scope, result is 6
+                </code></pre>
+            </section>
+            <section>
+                <p>
+                    eval() is a dangerous function, which executes the code it's passed with the privileges of the
+                    caller. If you run eval() with a string that could be affected by a malicious party, you may end up
+                    running malicious code on the user's machine with the permissions of your webpage / extension. More
+                    importantly, a third-party code can see the scope in which eval() was invoked, which can lead to
+                    possible attacks in ways to which the similar Function is not susceptible.
+                </p>
+            </section>
+            <section>
+                eval() is also generally slower than the alternatives, since it has to invoke the JS interpreter, while
+                many other constructs are optimized by modern JS engines.
+                There are safer (and faster!) alternatives to eval() for common use-cases.<br>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval">MDN
+                    Reference</a>
+            </section>
+        </section><!--eval-->
+        <section>
+            <section>
+                <h3>RegExp</h3>
+                <img src="images/regex.jpg">
+            </section>
+            <section data-markdown>
+                <textarea data-template>
+                    `^(?=(?!(.)\1)([^\DO:105-93+30])(?-1)(?<!\d(?<=(?![5-90-3])\d))).[^\WHY?]$`
+                    > "But… What does that mean?" asked Loonquawl.
 
+                    >"I don't know," said Deep Thought. "But I can design a more powerful computer that will be able to tell you that."
+
+                    >"It will take time, though", added Deep Thought.
+
+                    [Source](http://www.rexegg.com/regex-humor.html)
+                </textarea>
+            </section>
+            <section>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    let syntax1 = /ab+c/
+                    let syntax2 = new RegExp('ab+c')
+
+                    let re = /(\w+)\s(\w+)/
+                    let str = 'John Smith'
+                    let newstr = str.replace(re, '$2, $1')
+                    console.log(newstr) //Smith, John
+                </code></pre>
+            </section>
+        </section><!--RegExp-->
         <!--TODO------------------------------------------------------------------->
-
-
         <section>
             <section>Useful built in functions</section>
             <section>
@@ -1234,16 +1322,18 @@
             </section>
             <section>
                 <h3>document</h3>
+                d<p>An object representing the current html page you are on. Ultimately frameworks like jQuery, React, Angular etc all use this to make changes to the page. You can do it yourself with standard built in JS too.</p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document">MDN Reference</a>
             </section>
             <section>
                 <h3>window</h3>
+                <p>Object containing the DOM document, can get (and sometimes set) all sorts of interesting browser window properties</p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window">MDN Reference</a>
             </section>
             <section>
-                <h3>global</h3>
+                <h3>Node.js global scope</h3>
             </section>
-            <section>
-                <h3>Error</h3>
-            </section>
+
         </section><!--built in functions-->
     </div>
 </div>
