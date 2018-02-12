@@ -25,39 +25,6 @@
 <body>
 <div class="reveal">
     <div class="slides">
-        <section>
-            <section>
-                <h3>Error</h3>
-                <img src="images/maxresdefault.jpg">
-            </section>
-            <section>
-                <p>Errors are generally better than failing silently, the Error object allows us to add more context to an error message. A stack trace and line number can be included as well as context around the values that caused the error</p>
-                <pre><code class="JavaScript" data-trim data-noescape>
-                    // this:
-                    const x = new Error('I was created using a function call!')
-                    // has the same functionality as this:
-                    const y = new Error('I was constructed via the "new" keyword!')
-
-                    throw x
-                </code></pre>
-            </section>
-            <section>
-                <pre><code class="JavaScript" data-trim data-noescape>
-                    Error: I was created using a function call!
-                        at Object.<anonymous> (/home/ryan/development/dojo-javascript-fundamentals/src/index.js:4:11)
-                        at Module._compile (module.js:635:30)
-                        at Object.Module._extensions..js (module.js:646:10)
-                        at Module.load (module.js:554:32)
-                        at tryModuleLoad (module.js:497:12)
-                        at Function.Module._load (module.js:489:3)
-                        at Function.Module.runMain (module.js:676:10)
-                        at startup (bootstrap_node.js:187:16)
-                        at bootstrap_node.js:608:3
-
-                    Process finished with exit code 1
-                </code></pre>
-            </section>
-        </section><!--error-->
         <!--Intro------------------------------------------------------------------->
         <section>
             <img src="/images/js.png">
@@ -75,6 +42,9 @@
             </div>
         </section>
         <section>
+            <img src="images/java-js.jpg">
+        </section>
+        <section>
             JavaScript is dynamic
             <pre>
                 <code class="JavaScript" data-trim data-noescape>
@@ -85,8 +55,13 @@
             <img src="images/great-success.jpeg">
         </section>
         <section>
-            JavaScript is interpreted, not compiled
-            <img src="images/my-codes-compiling.png"/>
+            <section>
+                Is JavaScript interpreted or compiled?
+                <img src="images/my-codes-compiling.png"/>
+            </section>
+            <section>
+                The JS engine compiles your code right before (and sometimes during!) execution. So we use some deeper understanding of the compiler's approach to our code to understand how it finds and deals with variable and function declarations. Along the way, we see the typical metaphor for JS variable scope management, "Hoisting." - You Don't know JS
+            </section>
         </section>
         <section>
             <img src="images/runtime-error.jpg">
@@ -364,7 +339,7 @@
                 var hello = 'Hello'
 
                 /* a block statement, will be executed when
-                 * the interpreter reaches it. */
+                 * the engine reaches it. */
                 {
                     console.log(hello+' world!')
                 }
@@ -1261,6 +1236,78 @@
                 </code></pre>
             </section>
         </section><!--RegExp-->
+        <section>
+            <section>
+                <h3>Error</h3>
+                <img src="images/maxresdefault.jpg">
+            </section>
+            <section>
+                <p>Errors are generally better than failing silently, the Error object allows us to add more context to an error message. A stack trace and line number can be included as well as context around the values that caused the error</p>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    // this:
+                    const x = new Error('I was created using a function call!')
+                    // has the same functionality as this:
+                    const y = new Error('I was constructed via the "new" keyword!')
+
+                    throw x
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    Error: I was created using a function call!
+                        at Object.<anonymous> (/home/ryan/development/dojo-javascript-fundamentals/src/index.js:4:11)
+                        at Module._compile (module.js:635:30)
+                        at Object.Module._extensions..js (module.js:646:10)
+                        at Module.load (module.js:554:32)
+                        at tryModuleLoad (module.js:497:12)
+                        at Function.Module._load (module.js:489:3)
+                        at Function.Module.runMain (module.js:676:10)
+                        at startup (bootstrap_node.js:187:16)
+                        at bootstrap_node.js:608:3
+
+                    Process finished with exit code 1
+                </code></pre>
+            </section>
+            <section>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    try {
+                        if (Number((Math.random() * 10).toFixed(0)) % 2 === 0) {
+                            throw new Error('Oh dear, not again.')
+                        }
+                    } catch (err) {
+                        console.log(err)
+                    } finally {
+                        console.log('I always run')
+                    }
+                </code></pre>
+            </section>
+        </section><!--error-->
+        <section>
+                <section>
+                    <h3>this</h3>
+                    <img src="images/js-this.jpg">
+                </section>
+            <section>
+                <pre><code class="JavaScript" data-trim data-noescape>
+                    function Car(make = 'Honda', model = 'Accord', year = 1998) {
+                        this.make = make
+                        this.model = model
+                        this.year = year
+                        this.drive = function() {
+                            console.log(`Starting drive of a ${this.year} ${this.make} ${this.model}`)
+                            // Starting drive of a 1967 Chevy Impala
+                            setTimeout(function() {
+                                console.log(`Ending drive of a ${this.year} ${this.make} ${this.model}`)
+                                // Ending drive of a undefined undefined undefined
+                            }, 500)
+                        }
+                    }
+
+                    const demonHunter = new Car('Chevy', 'Impala', 1967)
+                    demonHunter.drive()
+                </code></pre>
+            </section>
+        </section>
         <!--TODO------------------------------------------------------------------->
         <section>
             <section>Useful built in functions</section>
@@ -1332,8 +1379,8 @@
             </section>
             <section>
                 <h3>Node.js global scope</h3>
+                <a href="https://nodejs.org/dist/latest-v8.x/docs/api/globals.html">Click Me</a>
             </section>
-
         </section><!--built in functions-->
     </div>
 </div>
